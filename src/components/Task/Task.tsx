@@ -1,4 +1,11 @@
-interface TaskProps {
+import {
+	TaskContainer,
+	TaskDescription,
+	TaskEstimation,
+	TaskTitle,
+} from "./Task.styles";
+
+export interface TaskProps {
 	title: string;
 	description: string;
 	estimation?: number;
@@ -6,11 +13,11 @@ interface TaskProps {
 
 const Task = ({ title, description, estimation }: TaskProps) => {
 	return (
-		<div>
-			{title}
-			{description}
-			{estimation}
-		</div>
+		<TaskContainer>
+			<TaskTitle>{title}</TaskTitle>
+			<TaskDescription> {description}</TaskDescription>
+			<TaskEstimation>{estimation || "?"}</TaskEstimation>
+		</TaskContainer>
 	);
 };
 
