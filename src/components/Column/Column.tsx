@@ -1,5 +1,5 @@
 import Task, { TaskProps } from "../Task/Task";
-import { Add, ColumnContainer } from "./Column.styles";
+import { Add, ColumnContainer, TaskCount } from "./Column.styles";
 
 const WARNING_TASK_NUMBER = 2;
 
@@ -15,7 +15,7 @@ const Column = ({ title, tasks }: ColumProps) => {
 
 	return (
 		<ColumnContainer>
-			{title}
+			{title} <TaskCount>{tasks.length}</TaskCount>
 			{tasks.length >= WARNING_TASK_NUMBER && <p>Warning !</p>}
 			{tasks.map((task) => (
 				<Task

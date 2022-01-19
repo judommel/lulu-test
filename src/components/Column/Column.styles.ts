@@ -17,3 +17,9 @@ export const Add = styled.div`
 	width: 100%;
 	cursor: pointer;
 `;
+
+export const TaskCount = styled.div`
+	background-color: silver;
+	border-radius: 4px;
+	padding: 4px;
+`;
