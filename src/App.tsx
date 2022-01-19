@@ -1,20 +1,9 @@
 import "./App.css";
 
-function App() {
-	return (
-		<div className="App">
-			<header className="App-header">
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Lulu
-				</a>
-			</header>
-		</div>
-	);
-}
+import Home from "./screens/Home";
+
+const App = () => {
+	return <Home />;
+};
 
 export default App;
