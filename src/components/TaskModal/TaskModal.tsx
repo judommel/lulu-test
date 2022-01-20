@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
-import { labels } from "../../constants";
-import { ITask } from "../../types";
+import { labels } from "../../utils/constants";
+import { ITask } from "../../types/types";
 import {
 	TaskModalAddButton,
 	TaskModalCard,
@@ -61,6 +61,7 @@ const TaskModal = ({ column, onCreateTask, onCloseModal }: TaskModalProps) => {
 					<div>{labels.modal.estimation}</div>
 					<TaskModalEstimationInput
 						type="number"
+						min={0}
 						onChange={(e) => setEstimation(Number(e.target.value))}
 					/>
 				</TaskModalEstimationSection>

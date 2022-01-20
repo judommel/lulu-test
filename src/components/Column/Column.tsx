@@ -1,5 +1,5 @@
 import Task from "../Task/Task";
-import { ITask } from "../../types";
+import { ITask } from "../../types/types";
 import {
 	Add,
 	ColumnContainer,
@@ -12,7 +12,7 @@ import {
 	EmptyText,
 	TaskCount,
 } from "./Column.styles";
-import { labels, WARNING_TASK_NUMBER } from "../../constants";
+import { labels, WARNING_TASK_NUMBER } from "../../utils/constants";
 
 interface ColumProps {
 	title: string;

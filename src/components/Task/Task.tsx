@@ -1,5 +1,5 @@
-import { labels } from "../../constants";
-import { ITask } from "../../types";
+import { labels } from "../../utils/constants";
+import { ITask } from "../../types/types";
 import {
 	TaskContainer,
 	TaskDeleteButton,
