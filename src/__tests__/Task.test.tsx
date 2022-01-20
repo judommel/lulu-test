@@ -40,4 +40,20 @@ describe("Test Task Component", () => {
 
 		expect(onDelete).toHaveBeenCalled();
 	});
+
+	test("should not be draggable if locked", async () => {
+		const { container } = render(
+			<Task
+				id="test"
+				onDelete={onDelete}
+				onDragStart={onDragStart}
+				title="My test title"
+				description="My test description"
+				estimation={3}
+				isLocked={true}
+			/>
+		);
+
+		expect(container.draggable).toBeFalsy();
+	});
 });
