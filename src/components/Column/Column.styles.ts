@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../theme";
 
 export const ColumnContainer = styled.div`
+	align-self: start;
 	width: 200px;
 	border-radius: 8px;
 	padding: 0px;

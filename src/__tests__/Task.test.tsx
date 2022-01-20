@@ -12,6 +12,7 @@ describe("Test Task Component", () => {
 			title="My test title"
 			description="My test description"
 			estimation={3}
+			isLocked={false}
 		/>
 	);
 
@@ -20,7 +21,8 @@ describe("Test Task Component", () => {
 	test("should display Title", async () => {
 		expect(task).toBeDefined();
 	});
-	test("should be deletable", async () => {
+
+	test("should be deletable if unlocked", async () => {
 		const { getByRole } = render(
 			<Task
 				id="test"
@@ -29,6 +31,7 @@ describe("Test Task Component", () => {
 				title="My test title"
 				description="My test description"
 				estimation={3}
+				isLocked={false}
 			/>
 		);
 
