@@ -1,8 +1,15 @@
 import Task from "../Task/Task";
 import { ITask } from "../../types";
-import { Add, ColumnContainer, ColumnHeader, TaskCount } from "./Column.styles";
-import { useState } from "react";
-import TaskModal from "../TaskModal/TaskModal";
+import {
+	Add,
+	ColumnContainer,
+	ColumnHeader,
+	EmptyIcon,
+	EmptySection,
+	EmptyText,
+	TaskCount,
+} from "./Column.styles";
+import { labels } from "../../constants";
 
 const WARNING_TASK_NUMBER = 2;
 
@@ -26,9 +33,8 @@ const Column = ({
 	onOpenModal,
 }: ColumProps) => (
 	<ColumnContainer onDrop={onDrop} onDragOver={onDragOver}>
-		<div onClick={onEmptyColumn}>Empty</div>
 		<ColumnHeader>
-			{title} <TaskCount>{tasks.length}</TaskCount>
+			{labels.titles[title]} <TaskCount>{tasks.length}</TaskCount>
 		</ColumnHeader>
 		{tasks.length >= WARNING_TASK_NUMBER && <p>Warning !</p>}
 		{tasks.map((task) => (
@@ -40,6 +46,10 @@ const Column = ({
 				estimation={task.estimation}
 			/>
 		))}
+		<EmptySection>
+			<EmptyIcon className="fas fa-trash" onClick={onEmptyColumn} />
+			<EmptyText>Empty column</EmptyText>
+		</EmptySection>
 		<Add onClick={onOpenModal}>+</Add>
 	</ColumnContainer>
 );

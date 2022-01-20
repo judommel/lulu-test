@@ -7,12 +7,14 @@ import { BoardContainer } from "./Board.styles";
 const initialState: IBoardState = {
 	todo: [],
 	doing: [],
+	testKO: [],
 	done: [],
 };
 
 interface IBoardState {
 	todo: ITask[];
 	doing: ITask[];
+	testKO: ITask[];
 	done: ITask[];
 }
 
