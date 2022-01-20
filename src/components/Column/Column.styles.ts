@@ -20,12 +20,22 @@ export const ColumnHeader = styled.div`
 	border-top-right-radius: 8px;
 `;
 
+export const ColumnTaskContainer = styled.div`
+	padding: 8px;
+`;
+
+export const ColumnWarning = styled.div`
+	color: ${colors.warning};
+	margin-bottom: 8px;
+`;
+
 export const EmptySection = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	margin-top: 16px;
 	padding: 0px 8px;
+	cursor: pointer;
 `;
 
 export const EmptyIcon = styled.i`
@@ -37,6 +47,12 @@ export const EmptyText = styled.div`
 	font-size: 14px;
 	color: grey;
 	margin-left: 8px;
+`;
+
+export const EmptyPlaceholder = styled.div`
+	text-align: center;
+	margin-top: 6px;
+	color: ${colors.warning};
 `;
 
 export const Add = styled.div`

@@ -69,16 +69,14 @@ const Board = () => {
 
 		const originColumnArray = parsedBoard[parsedDroppedTask.originColumn];
 		const draggedCard = originColumnArray.find(
-			(card: ITask) =>
-				`${card.title}${card.description}` === parsedDroppedTask.taskId
+			(task: ITask) => task.id === parsedDroppedTask.taskId
 		);
-		const cardIndex = originColumnArray.findIndex(
-			(card: ITask) =>
-				`${card.title}${card.description}` === parsedDroppedTask.taskId
+		const taskIndex = originColumnArray.findIndex(
+			(task: ITask) => task.id === parsedDroppedTask.taskId
 		);
 		const newBoard = { ...parsedBoard };
 
-		newBoard[parsedDroppedTask.originColumn].splice(cardIndex, 1);
+		newBoard[parsedDroppedTask.originColumn].splice(taskIndex, 1);
 		newBoard[dropColumn].push({
 			...draggedCard,
 		});
@@ -99,6 +97,22 @@ const Board = () => {
 		setBoardState(newBoard);
 		localStorage.setItem("board", JSON.stringify(newBoard));
 		onCloseModal();
+	};
+
+	const onDeleteTask = (taskId: string, column: string) => {
+		const storedBoard = localStorage.getItem("board");
+		if (!storedBoard) {
+			return null;
+		}
+
+		const parsedBoard = JSON.parse(storedBoard);
+		const newBoard = { ...parsedBoard };
+		const taskIndex = newBoard[column].findIndex(
+			(task: ITask) => task.id === taskId
+		);
+		newBoard[column].splice(taskIndex, 1);
+		setBoardState(newBoard);
+		localStorage.setItem("board", JSON.stringify(newBoard));
 	};
 
 	const onEmptyColumn = (column: string) => {
@@ -135,6 +149,7 @@ const Board = () => {
 						onDragOver={onDragOver}
 						onEmptyColumn={() => onEmptyColumn(column)}
 						onOpenModal={() => setTaskModal(column as keyof IBoardState)}
+						onDeleteTask={(taskId) => onDeleteTask(taskId, column)}
 					/>
 				))}
 			</BoardContainer>

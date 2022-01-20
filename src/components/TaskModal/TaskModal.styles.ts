@@ -37,7 +37,8 @@ export const TaskModalCardTitle = styled.div`
 export const TaskModalInput = styled.input`
 	border-radius: 4px;
 	border: 1px solid ${colors.dark};
-	padding: 4px;
+	padding: 8px;
+	font-size: 16px;
 `;
 
 export const TaskModalCloseIcon = styled.i`
@@ -60,7 +61,7 @@ export const TaskModalDescriptionTitle = styled.div`
 export const TaskModalDescriptionTextArea = styled.textarea`
 	border-radius: 4px;
 	border: 1px solid ${colors.dark};
-	padding: 4px;
+	padding: 8px;
 `;
 
 export const TaskModalEstimationSection = styled.div`

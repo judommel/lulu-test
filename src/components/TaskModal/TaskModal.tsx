@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
+
 import { labels } from "../../constants";
 import { ITask } from "../../types";
 import {
@@ -29,7 +31,8 @@ const TaskModal = ({ column, onCreateTask, onCloseModal }: TaskModalProps) => {
 		if (!title || !description) {
 			return;
 		}
-		onCreateTask({ title, description, estimation });
+		const uniqueId = uuid();
+		onCreateTask({ title, description, estimation, id: uniqueId });
 	};
 
 	return (
@@ -40,7 +43,7 @@ const TaskModal = ({ column, onCreateTask, onCloseModal }: TaskModalProps) => {
 					onClick={onCloseModal}
 				/>
 				<TaskModalCardTitle>
-					{labels.modal.new} {column}
+					{labels.modal.new} {labels.titles[column]}
 				</TaskModalCardTitle>
 				<TaskModalTitleInput
 					onChange={(e) => setTitle(e.target.value)}
@@ -51,7 +54,7 @@ const TaskModal = ({ column, onCreateTask, onCloseModal }: TaskModalProps) => {
 				</TaskModalDescriptionTitle>
 				<TaskModalDescriptionTextArea
 					rows={8}
-					cols={34}
+					cols={30}
 					onChange={(e) => setDescription(e.target.value)}
 				/>
 				<TaskModalEstimationSection>

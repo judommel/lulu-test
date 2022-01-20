@@ -1,6 +1,8 @@
+import { labels } from "../../constants";
 import { ITask } from "../../types";
 import {
 	TaskContainer,
+	TaskDeleteButton,
 	TaskDescription,
 	TaskEstimation,
 	TaskTitle,
@@ -8,23 +10,27 @@ import {
 
 export interface BoardTaskProps extends ITask {
 	onDragStart: React.DragEventHandler<HTMLDivElement>;
+	onDelete: () => void;
 }
 
 const Task = ({
+	id,
 	title,
 	description,
-	onDragStart,
 	estimation,
+	onDragStart,
+	onDelete,
 }: BoardTaskProps) => {
 	return (
-		<TaskContainer
-			draggable
-			id={`${title}${description}`}
-			onDragStart={onDragStart}
-		>
+		<TaskContainer draggable id={id} onDragStart={onDragStart}>
 			<TaskTitle>{title}</TaskTitle>
 			<TaskDescription> {description}</TaskDescription>
-			<TaskEstimation>{estimation || "?"}</TaskEstimation>
+			<TaskDeleteButton onClick={onDelete}>
+				{labels.task.delete}
+			</TaskDeleteButton>
+			<TaskEstimation>
+				{labels.task.estimation} : {estimation || "?"}
+			</TaskEstimation>
 		</TaskContainer>
 	);
 };

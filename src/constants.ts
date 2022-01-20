@@ -1,3 +1,5 @@
+export const WARNING_TASK_NUMBER = 5;
+
 interface LabelProps {
 	[key: string]: { [key: string]: string };
 }
@@ -12,8 +14,16 @@ export const labels: LabelProps = {
 	buttons: {
 		add: "Add",
 	},
+	column: {
+		empty: "No task yet",
+		warning: "Warning ! You already have a lot on your plate here !",
+	},
+	task: {
+		estimation: "Estimation",
+		delete: "Delete task",
+	},
 	modal: {
-		new: "New task in",
+		new: "New task in :",
 		title: "Title",
 		description: "Task details :",
 		estimation: "Estimation",
