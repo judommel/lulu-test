@@ -60,6 +60,7 @@ const TaskModal = ({ column, onCreateTask, onCloseModal }: TaskModalProps) => {
 				<TaskModalEstimationSection>
 					<div>{labels.modal.estimation}</div>
 					<TaskModalEstimationInput
+						type="number"
 						onChange={(e) => setEstimation(Number(e.target.value))}
 					/>
 				</TaskModalEstimationSection>

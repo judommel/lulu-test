@@ -72,7 +72,7 @@ export const TaskModalEstimationSection = styled.div`
 `;
 
 export const TaskModalEstimationInput = styled(TaskModalInput)`
-	width: 30px;
+	width: 40px;
 	margin-left: 8px;
 `;
 
