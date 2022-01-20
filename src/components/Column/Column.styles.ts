@@ -8,6 +8,12 @@ export const ColumnContainer = styled.div`
 	margin: 8px;
 `;
 
+export const ColumnHeader = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+`;
+
 export const Add = styled.div`
 	color: green;
 	font-size: 32px;
@@ -22,4 +28,6 @@ export const TaskCount = styled.div`
 	background-color: silver;
 	border-radius: 4px;
 	padding: 4px;
+	color: white;
+	margin-left: 8px;
 `;

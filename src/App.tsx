@@ -1,9 +1,9 @@
 import "./App.css";
 
-import Home from "./screens/Home/Home";
+import Board from "./screens/Board/Board";
 
 const App = () => {
-	return <Home />;
+	return <Board />;
 };
 
 export default App;
