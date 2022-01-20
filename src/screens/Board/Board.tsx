@@ -1,19 +1,8 @@
 import { useEffect, useState } from "react";
 import Column from "../../components/Column/Column";
+import TaskModal from "../../components/TaskModal/TaskModal";
 import { ITask } from "../../types";
 import { BoardContainer } from "./Board.styles";
-
-const mockTasks = [
-	{ title: "Task 1", description: "A lot to do here", estimation: 3 },
-	{ title: "Task 2", description: "A lot to do here too" },
-	{ title: "Task 3", description: "A lot to do here", estimation: 3 },
-];
-
-const mockState: IBoardState = {
-	todo: [],
-	doing: [{ title: "Task 1", description: "A lot to do here", estimation: 3 }],
-	done: [],
-};
 
 const initialState: IBoardState = {
 	todo: [],
@@ -29,6 +18,7 @@ interface IBoardState {
 
 const Board = () => {
 	const [boardState, setBoardState] = useState<IBoardState | null>(null);
+	const [taskModal, setTaskModal] = useState<keyof IBoardState | null>(null);
 
 	useEffect(() => {
 		if (localStorage.getItem("board")) {
@@ -37,14 +27,16 @@ const Board = () => {
 
 			setBoardState(parsedBoard);
 		} else {
-			localStorage.setItem("board", JSON.stringify(mockState));
-			setBoardState(mockState);
+			localStorage.setItem("board", JSON.stringify(initialState));
+			setBoardState(initialState);
 		}
 	}, []);
 
 	if (!boardState) {
 		return <p>Loading</p>;
 	}
+
+	const onCloseModal = () => setTaskModal(null);
 
 	const onDragStart = (
 		e: React.DragEvent<HTMLDivElement>,
@@ -104,6 +96,7 @@ const Board = () => {
 		newBoard[column] = [...newBoard[column], task];
 		setBoardState(newBoard);
 		localStorage.setItem("board", JSON.stringify(newBoard));
+		onCloseModal();
 	};
 
 	const onEmptyColumn = (column: string) => {
@@ -121,20 +114,29 @@ const Board = () => {
 	};
 
 	return (
-		<BoardContainer>
-			{Object.keys(initialState).map((column) => (
-				<Column
-					key={column}
-					title={column}
-					tasks={boardState[column as keyof IBoardState]}
-					onDragStart={(e) => onDragStart(e, column)}
-					onDrop={(e) => onDrop(e, column)}
-					onDragOver={onDragOver}
-					onEmptyColumn={() => onEmptyColumn(column)}
-					onAddTask={(task) => onAddTask(task, column)}
+		<>
+			{taskModal && (
+				<TaskModal
+					column={taskModal as string}
+					onCreateTask={(task) => onAddTask(task, taskModal)}
+					onCloseModal={onCloseModal}
 				/>
-			))}
-		</BoardContainer>
+			)}
+			<BoardContainer>
+				{Object.keys(initialState).map((column) => (
+					<Column
+						key={column}
+						title={column}
+						tasks={boardState[column as keyof IBoardState]}
+						onDragStart={(e) => onDragStart(e, column)}
+						onDrop={(e) => onDrop(e, column)}
+						onDragOver={onDragOver}
+						onEmptyColumn={() => onEmptyColumn(column)}
+						onOpenModal={() => setTaskModal(column as keyof IBoardState)}
+					/>
+				))}
+			</BoardContainer>
+		</>
 	);
 };
 
