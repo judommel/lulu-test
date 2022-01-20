@@ -7,7 +7,7 @@ export const TaskContainer = styled.div`
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 	margin-bottom: 16px;
-	cursor: pointer;
+	cursor: ${(props) => (props.draggable ? "pointer" : "default")};
 `;
 
 export const TaskTitle = styled.div`

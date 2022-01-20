@@ -29,26 +29,6 @@ export const ColumnWarning = styled.div`
 	margin-bottom: 8px;
 `;
 
-export const EmptySection = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	margin-top: 16px;
-	padding: 0px 8px;
-	cursor: pointer;
-`;
-
-export const EmptyIcon = styled.i`
-	color: red;
-	font-size: 14px;
-`;
-
-export const EmptyText = styled.div`
-	font-size: 14px;
-	color: grey;
-	margin-left: 8px;
-`;
-
 export const EmptyPlaceholder = styled.div`
 	text-align: center;
 	margin-top: 6px;

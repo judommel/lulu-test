@@ -3,6 +3,7 @@ const colors = {
 	warning: "#FF8C00",
 	delete: "#FB3717",
 	white: "#FFF",
+	disabled: "#778899",
 	dark: "#000",
 };
 

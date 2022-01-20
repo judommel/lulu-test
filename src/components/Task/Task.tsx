@@ -11,6 +11,7 @@ import {
 export interface BoardTaskProps extends ITask {
 	onDragStart: React.DragEventHandler<HTMLDivElement>;
 	onDelete: () => void;
+	isLocked: boolean;
 }
 
 const Task = ({
@@ -20,19 +21,22 @@ const Task = ({
 	estimation,
 	onDragStart,
 	onDelete,
+	isLocked,
 }: BoardTaskProps) => {
 	return (
 		<TaskContainer
 			data-testid="task_card"
-			draggable
+			draggable={!isLocked}
 			id={id}
 			onDragStart={onDragStart}
 		>
 			<TaskTitle>{title}</TaskTitle>
 			<TaskDescription> {description}</TaskDescription>
-			<TaskDeleteButton onClick={onDelete} role="button">
-				{labels.task.delete}
-			</TaskDeleteButton>
+			{!isLocked && (
+				<TaskDeleteButton onClick={onDelete} role="button">
+					{labels.task.delete}
+				</TaskDeleteButton>
+			)}
 			<TaskEstimation>
 				{labels.task.estimation} : {estimation || "?"}
 			</TaskEstimation>

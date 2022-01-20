@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Task from "../Task/Task";
 import { ITask } from "../../types/types";
 import {
@@ -6,13 +8,11 @@ import {
 	ColumnHeader,
 	ColumnTaskContainer,
 	ColumnWarning,
-	EmptyIcon,
 	EmptyPlaceholder,
-	EmptySection,
-	EmptyText,
 	TaskCount,
 } from "./Column.styles";
 import { labels, WARNING_TASK_NUMBER } from "../../utils/constants";
+import ColumnOptions from "../ColumnOptions/ColumnOptions";
 
 interface ColumProps {
 	title: string;
@@ -34,37 +34,46 @@ const Column = ({
 	onEmptyColumn,
 	onOpenModal,
 	onDeleteTask,
-}: ColumProps) => (
-	<ColumnContainer onDrop={onDrop} onDragOver={onDragOver}>
-		<ColumnHeader>
-			{labels.titles[title]} <TaskCount>{tasks.length}</TaskCount>
-		</ColumnHeader>
-		<ColumnTaskContainer>
-			{tasks.length >= WARNING_TASK_NUMBER && (
-				<ColumnWarning>{labels.column.warning}</ColumnWarning>
-			)}
-			{tasks.map((task) => (
-				<Task
-					id={task.id}
-					key={task.id}
-					title={task.title}
-					description={task.description}
-					onDragStart={onDragStart}
-					onDelete={() => onDeleteTask(task.id)}
-					estimation={task.estimation}
+}: ColumProps) => {
+	const [isLocked, setLocked] = useState(false);
+
+	const toggleLock = () => setLocked((prevState) => !prevState);
+
+	return (
+		<ColumnContainer onDrop={onDrop} onDragOver={onDragOver}>
+			<ColumnHeader>
+				{labels.titles[title]} <TaskCount>{tasks.length}</TaskCount>
+			</ColumnHeader>
+			<ColumnTaskContainer>
+				{tasks.length >= WARNING_TASK_NUMBER && (
+					<ColumnWarning>{labels.column.warning}</ColumnWarning>
+				)}
+				{tasks.map((task) => (
+					<Task
+						id={task.id}
+						key={task.id}
+						title={task.title}
+						description={task.description}
+						onDragStart={onDragStart}
+						onDelete={() => onDeleteTask(task.id)}
+						estimation={task.estimation}
+						isLocked={isLocked}
+					/>
+				))}
+			</ColumnTaskContainer>
+			{Boolean(tasks.length) ? (
+				<ColumnOptions
+					isLocked={isLocked}
+					onEmptyColumn={onEmptyColumn}
+					toggleLock={toggleLock}
 				/>
-			))}
-		</ColumnTaskContainer>
-		{Boolean(tasks.length) ? (
-			<EmptySection onClick={onEmptyColumn}>
-				<EmptyIcon className="fas fa-trash" />
-				<EmptyText>Empty column</EmptyText>
-			</EmptySection>
-		) : (
-			<EmptyPlaceholder>{labels.column.empty}</EmptyPlaceholder>
-		)}
-		<Add onClick={onOpenModal}>+</Add>
-	</ColumnContainer>
-);
+			) : (
+				<EmptyPlaceholder>{labels.column.empty}</EmptyPlaceholder>
+			)}
+
+			<Add onClick={onOpenModal}>+</Add>
+		</ColumnContainer>
+	);
+};
 
 export default Column;

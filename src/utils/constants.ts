@@ -25,7 +25,10 @@ export const labels: LabelProps = {
 	},
 	column: {
 		empty: "No task yet",
+		emptyButton: "Empty column",
 		warning: "Warning ! You already have a lot on your plate here !",
+		lock: "Lock column",
+		unlock: "Unlock column",
 	},
 	task: {
 		estimation: "Estimation",
