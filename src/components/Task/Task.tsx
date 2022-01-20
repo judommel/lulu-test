@@ -22,10 +22,15 @@ const Task = ({
 	onDelete,
 }: BoardTaskProps) => {
 	return (
-		<TaskContainer draggable id={id} onDragStart={onDragStart}>
+		<TaskContainer
+			data-testid="task_card"
+			draggable
+			id={id}
+			onDragStart={onDragStart}
+		>
 			<TaskTitle>{title}</TaskTitle>
 			<TaskDescription> {description}</TaskDescription>
-			<TaskDeleteButton onClick={onDelete}>
+			<TaskDeleteButton onClick={onDelete} role="button">
 				{labels.task.delete}
 			</TaskDeleteButton>
 			<TaskEstimation>
