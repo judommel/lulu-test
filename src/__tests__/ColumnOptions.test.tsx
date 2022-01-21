@@ -1,19 +1,21 @@
 import { render } from "@testing-library/react";
+import { ThemeProvider } from "styled-components";
 import ColumnOptions from "../components/ColumnOptions/ColumnOptions";
+import theme from "../theme";
 
-// TODO TEXT
-
-describe("Test Task Component", () => {
-	test("Lock icon should", async () => {
+describe("Test ColumnOption Component", () => {
+	test("Should display correct icon", async () => {
 		const onEmptyColumn = jest.fn();
 		const toggleLock = jest.fn();
 
 		const { findByTestId } = render(
-			<ColumnOptions
-				onEmptyColumn={onEmptyColumn}
-				toggleLock={toggleLock}
-				isLocked={true}
-			/>
+			<ThemeProvider theme={theme}>
+				<ColumnOptions
+					onEmptyColumn={onEmptyColumn}
+					toggleLock={toggleLock}
+					isLocked={true}
+				/>
+			</ThemeProvider>
 		);
 
 		const icon = await findByTestId("lock icon");
