@@ -1,5 +1,9 @@
-export const getFromLocalStorage = (item: string) => {
+export const getFromLocalStorage = (item: string, shouldParse = true) => {
 	const storedItem = localStorage.getItem(item);
 
-	return storedItem ? JSON.parse(storedItem) : undefined;
+	return storedItem
+		? shouldParse
+			? JSON.parse(storedItem)
+			: storedItem
+		: undefined;
 };

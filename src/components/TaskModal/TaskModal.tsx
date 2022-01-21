@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
+import { useTranslation } from "react-i18next";
 
-import { labels } from "../../utils/constants";
 import { ITask } from "../../types/types";
 import {
 	TaskModalAddButton,
@@ -15,6 +15,7 @@ import {
 	TaskModalEstimationSection,
 	TaskModalTitleInput,
 } from "./TaskModal.styles";
+import { MINIMUM_ESTIMATION } from "../../utils/constants";
 
 interface TaskModalProps {
 	column: string;
@@ -26,6 +27,8 @@ const TaskModal = ({ column, onCreateTask, onCloseModal }: TaskModalProps) => {
 	const [title, setTitle] = useState<string>();
 	const [description, setDescription] = useState<string>();
 	const [estimation, setEstimation] = useState<number>();
+
+	const { t } = useTranslation();
 
 	const onCreate = () => {
 		if (!title || !description) {
@@ -43,14 +46,14 @@ const TaskModal = ({ column, onCreateTask, onCloseModal }: TaskModalProps) => {
 					onClick={onCloseModal}
 				/>
 				<TaskModalCardTitle>
-					{labels.modal.new} {labels.titles[column]}
+					{t("modal.new")} {t(`titles.${column}`)}
 				</TaskModalCardTitle>
 				<TaskModalTitleInput
 					onChange={(e) => setTitle(e.target.value)}
-					placeholder={labels.modal.title}
+					placeholder={t("modal.title")}
 				/>
 				<TaskModalDescriptionTitle>
-					{labels.modal.description}
+					{t("modal.description")}
 				</TaskModalDescriptionTitle>
 				<TaskModalDescriptionTextArea
 					rows={8}
@@ -58,15 +61,15 @@ const TaskModal = ({ column, onCreateTask, onCloseModal }: TaskModalProps) => {
 					onChange={(e) => setDescription(e.target.value)}
 				/>
 				<TaskModalEstimationSection>
-					<div>{labels.modal.estimation}</div>
+					<div>{t("modal.estimation")}</div>
 					<TaskModalEstimationInput
 						type="number"
-						min={0}
+						min={MINIMUM_ESTIMATION}
 						onChange={(e) => setEstimation(Number(e.target.value))}
 					/>
 				</TaskModalEstimationSection>
 				<TaskModalAddButton onClick={onCreate}>
-					{labels.buttons.add}
+					{t("buttons.add")}
 				</TaskModalAddButton>
 			</TaskModalCard>
 		</TaskModalContainer>

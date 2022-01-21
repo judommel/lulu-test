@@ -11,3 +11,8 @@ export interface IBoardState {
 	testKO: ITask[];
 	done: ITask[];
 }
+
+export enum AvailableLanguages {
+	fr = "fr",
+	en = "en",
+}

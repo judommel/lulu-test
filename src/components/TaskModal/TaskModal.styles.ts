@@ -62,6 +62,7 @@ export const TaskModalDescriptionTextArea = styled.textarea`
 	border-radius: 4px;
 	border: 1px solid ${colors.dark};
 	padding: 8px;
+	font-family: "Arial";
 `;
 
 export const TaskModalEstimationSection = styled.div`

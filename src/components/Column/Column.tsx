@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import Task from "../Task/Task";
 import { ITask } from "../../types/types";
@@ -11,7 +12,7 @@ import {
 	EmptyPlaceholder,
 	TaskCount,
 } from "./Column.styles";
-import { labels, WARNING_TASK_NUMBER } from "../../utils/constants";
+import { WARNING_TASK_NUMBER } from "../../utils/constants";
 import ColumnOptions from "../ColumnOptions/ColumnOptions";
 
 interface ColumProps {
@@ -37,16 +38,18 @@ const Column = ({
 }: ColumProps) => {
 	const [isLocked, setLocked] = useState(false);
 
+	const { t } = useTranslation();
+
 	const toggleLock = () => setLocked((prevState) => !prevState);
 
 	return (
 		<ColumnContainer onDrop={onDrop} onDragOver={onDragOver}>
 			<ColumnHeader>
-				{labels.titles[title]} <TaskCount>{tasks.length}</TaskCount>
+				{t(`titles.${title}`)} <TaskCount>{tasks.length}</TaskCount>
 			</ColumnHeader>
 			<ColumnTaskContainer>
 				{tasks.length >= WARNING_TASK_NUMBER && (
-					<ColumnWarning>{labels.column.warning}</ColumnWarning>
+					<ColumnWarning>{t("column.warning")}</ColumnWarning>
 				)}
 				{tasks.map((task) => (
 					<Task
@@ -68,7 +71,7 @@ const Column = ({
 					toggleLock={toggleLock}
 				/>
 			) : (
-				<EmptyPlaceholder>{labels.column.empty}</EmptyPlaceholder>
+				<EmptyPlaceholder>{t("column.empty")}</EmptyPlaceholder>
 			)}
 
 			<Add onClick={onOpenModal}>+</Add>

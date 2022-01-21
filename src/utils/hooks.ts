@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { IBoardState, ITask } from "../types/types";
 import { initialState } from "./constants";
 import { getFromLocalStorage } from "./utils";
@@ -114,4 +115,21 @@ export const useBoardState = () => {
 		onCloseModal,
 		setTaskModal,
 	};
+};
+
+export const useStoredLanguage = () => {
+	const [languageLoaded, setLanguageLoaded] = useState(false);
+
+	const { i18n } = useTranslation();
+
+	useEffect(() => {
+		const storedLanguage = getFromLocalStorage("language", false);
+
+		if (storedLanguage) {
+			i18n.changeLanguage(storedLanguage);
+		}
+		setLanguageLoaded(true);
+	}, [i18n]);
+
+	return { languageLoaded };
 };

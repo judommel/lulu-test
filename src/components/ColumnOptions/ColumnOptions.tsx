@@ -1,4 +1,5 @@
-import { labels } from "../../utils/constants";
+import { useTranslation } from "react-i18next";
+
 import { colors } from "../../theme";
 import { OptionIcon, OptionSection, OptionText } from "./ColumnOptions.styles";
 
@@ -13,12 +14,14 @@ const ColumnOptions = ({
 	onEmptyColumn,
 	toggleLock,
 }: ColumnOptionsProps) => {
+	const { t } = useTranslation();
+
 	return (
 		<>
 			{!isLocked && (
 				<OptionSection onClick={onEmptyColumn}>
 					<OptionIcon color={colors.delete} className="fas fa-trash" />
-					<OptionText>{labels.column.emptyButton}</OptionText>
+					<OptionText>{t("column.emptyButton")}</OptionText>
 				</OptionSection>
 			)}
 			<OptionSection onClick={toggleLock}>
@@ -26,7 +29,7 @@ const ColumnOptions = ({
 					color={isLocked ? colors.primary : colors.disabled}
 					className={`fa fa-${isLocked ? "un" : ""}lock`}
 				/>
-				<OptionText>{labels.column[isLocked ? "unlock" : "lock"]}</OptionText>
+				<OptionText>{t(`column.${isLocked ? "unlock" : "lock"}`)}</OptionText>
 			</OptionSection>
 		</>
 	);

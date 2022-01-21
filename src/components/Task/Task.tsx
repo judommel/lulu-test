@@ -1,4 +1,3 @@
-import { labels } from "../../utils/constants";
 import { ITask } from "../../types/types";
 import {
 	TaskContainer,
@@ -7,6 +6,7 @@ import {
 	TaskEstimation,
 	TaskTitle,
 } from "./Task.styles";
+import { useTranslation } from "react-i18next";
 
 export interface BoardTaskProps extends ITask {
 	onDragStart: React.DragEventHandler<HTMLDivElement>;
@@ -23,6 +23,8 @@ const Task = ({
 	onDelete,
 	isLocked,
 }: BoardTaskProps) => {
+	const { t } = useTranslation();
+
 	return (
 		<TaskContainer
 			data-testid="task_card"
@@ -34,11 +36,11 @@ const Task = ({
 			<TaskDescription> {description}</TaskDescription>
 			{!isLocked && (
 				<TaskDeleteButton onClick={onDelete} role="button">
-					{labels.task.delete}
+					{t("task.delete")}
 				</TaskDeleteButton>
 			)}
 			<TaskEstimation>
-				{labels.task.estimation} : {estimation || "?"}
+				{t("task.estimation")} : {estimation || "?"}
 			</TaskEstimation>
 		</TaskContainer>
 	);
