@@ -26,6 +26,7 @@ const ColumnOptions = ({
 			)}
 			<OptionSection onClick={toggleLock}>
 				<OptionIcon
+					data-testid="lock icon"
 					color={isLocked ? colors.primary : colors.disabled}
 					className={`fa fa-${isLocked ? "un" : ""}lock`}
 				/>
