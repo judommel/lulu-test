@@ -15,7 +15,7 @@ export const ColumnHeader = styled.div`
 	flex-direction: row;
 	align-items: center;
 	background-color: ${({ theme }) => theme.colors.primary};
-	padding: 8px;
+	padding: 8px 16px;
 	color: ${({ theme }) => theme.colors.white};
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
@@ -50,7 +50,7 @@ export const Add = styled.div`
 export const TaskCount = styled.div`
 	background-color: ${({ theme }) => theme.colors.white};
 	border-radius: 4px;
-	padding: 4px;
+	padding: 4px 8px;
 	color: ${({ theme }) => theme.colors.primary};
-	margin-left: 8px;
+	margin-left: 16px;
 `;
