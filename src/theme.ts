@@ -7,4 +7,15 @@ const colors = {
 	dark: "#000",
 };
 
-export { colors };
+const fonts = {
+	default: "Avenir Medium",
+};
+
+const fontWeights = {
+	semiBold: 500,
+	bold: 600,
+};
+
+const theme = { colors, fonts, fontWeights };
+
+export default theme;

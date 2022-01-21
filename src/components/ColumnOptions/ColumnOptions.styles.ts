@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "../../theme";
 
 export const OptionSection = styled.div`
 	display: flex;
@@ -17,6 +16,6 @@ export const OptionIcon = styled.i`
 
 export const OptionText = styled.div`
 	font-size: 14px;
-	color: ${colors.disabled};
+	color: ${({ theme }) => theme.colors.disabled};
 	margin-left: 8px;
 `;
